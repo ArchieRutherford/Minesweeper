@@ -64,6 +64,7 @@
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
     </Compile>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -77,6 +78,48 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Bomb+3.mp3" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Bomb+4.wav" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\1Bomb.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\2Bomb.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\3Bomb.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\4Bomb.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\5Bomb.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\6Bomb.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\7Bomb.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\8Bomb.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Blank.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Bomb.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Empty.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Flag.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

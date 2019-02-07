@@ -31,7 +31,7 @@ namespace Minesweeper
             InitializeComponent();
 
             // This will change the size of the window based on the size of the grid.
-            Size = new System.Drawing.Size(18 + (35 * sizeX), 70 + (35 * sizeY));
+            Size = new System.Drawing.Size(18 + (45 * sizeX), 70 + (45 * sizeY));
             
             for (int x = 0; x < 30; x++)        // Loop to initialise all of the buttons        
             {
@@ -47,8 +47,8 @@ namespace Minesweeper
         // Event handler which runs when a button is pressed with the mouse
         void btnEvent_Click(object sender, MouseEventArgs e)
         {
-            int x = ((((Button)sender).Location.X) / 35);   // Work out the x and y coordinates of
-            int y = ((((Button)sender).Location.Y) / 35);   // the buttons based on their location
+            int x = ((((Button)sender).Location.X) / 45);   // Work out the x and y coordinates of
+            int y = ((((Button)sender).Location.Y) / 45);   // the buttons based on their location
             
             if (e.Button == MouseButtons.Left)      // If the button pressed is the left click
             {
@@ -66,8 +66,8 @@ namespace Minesweeper
         // Event handler which runs when the mouse wheel is used while hovering on a box.
         void btnEvent_Wheel(object sender, MouseEventArgs e)
         {
-            int x = ((((Button)sender).Location.X) / 35);   // Work out the x and y coordinates of
-            int y = ((((Button)sender).Location.Y) / 35);   // the buttons based on their location
+            int x = ((((Button)sender).Location.X) / 45);   // Work out the x and y coordinates of
+            int y = ((((Button)sender).Location.Y) / 45);   // the buttons based on their location
 
             flag(x, y);     // Call the function to place a flag on the box
         }
@@ -84,8 +84,8 @@ namespace Minesweeper
                 {
                     board[x, y] = 0;                                                        // Initialise the state of all boxes
                     btn[x, y].Enabled = true;                                               // Activate the buttons
-                    btn[x, y].SetBounds(35 * x, 30 + (35 * y), 35, 35);                     // Set the location and size
-                    btn[x, y].BackColor = Color.BlueViolet;                                 // Set the colours
+                    btn[x, y].SetBounds(45 * x, 30 + (45 * y), 45, 45);                     // Set the location and size
+                    btn[x, y].BackgroundImage = Minesweeper.Properties.Resources.Blank;     // Set the colours
                     btn[x, y].Text = "";                                                    // Make all boxes empty
                     btn[x, y].MouseClick += new MouseEventHandler(this.btnEvent_Click);     // Set the event handlers for
                     btn[x, y].MouseWheel += new MouseEventHandler(this.btnEvent_Wheel);     // Click and Mouse Wheel
@@ -117,12 +117,12 @@ namespace Minesweeper
             if (board[x, y]%4 < 2 && board[x, y]%8 < 4)     // If the box isn't opened or flagged
             {
                 board[x, y] += 2;                           // Set the box to an opened state
-                btn[x, y].BackColor = Color.LightBlue;      // Change the colour to look opened
+                btn[x, y].BackgroundImage = Minesweeper.Properties.Resources.Empty;      // Change the colour to look opened
 
                 if (board[x, y] % 2 == 1)   // If the opened box contained a bomb
                 {
-                    System.Media.SoundPlayer player = new System.Media.SoundPlayer("Bomb+4.wav");
-                    player.Play();      // Play a bomb sound effect
+                    //System.Media.SoundPlayer player = new System.Media.SoundPlayer("Bomb_4");
+                    //player.Play();      // Play a bomb sound effect
 
                     endGame(1);             // End the game with a loss
                 }
@@ -136,12 +136,44 @@ namespace Minesweeper
                     }
                     else
                     {
-                        btn[x, y].Text = Convert.ToString(noOfBombs);   // Display how many bombs surround it
+                        setBackgroundNumber(x, y, noOfBombs);   // Display how many bombs surround it
                     }
                 }
             }
 
             checkWin();     // Call the function to check whether the game has been won
+        }
+
+        void setBackgroundNumber(int x, int y, int number)
+        {
+            switch (number)
+            {
+                case 1:
+                    btn[x, y].BackgroundImage = Minesweeper.Properties.Resources._1bomb;
+                    break;
+                case 2:
+                    btn[x, y].BackgroundImage = Minesweeper.Properties.Resources._2Bomb;
+                    break;
+                case 3:
+                    btn[x, y].BackgroundImage = Minesweeper.Properties.Resources._3Bomb;
+                    break;
+                case 4:
+                    btn[x, y].BackgroundImage = Minesweeper.Properties.Resources._4Bomb;
+                    break;
+                case 5:
+                    btn[x, y].BackgroundImage = Minesweeper.Properties.Resources._5Bomb;
+                    break;
+                case 6:
+                    btn[x, y].BackgroundImage = Minesweeper.Properties.Resources._6Bomb;
+                    break;
+                case 7:
+                    btn[x, y].BackgroundImage = Minesweeper.Properties.Resources._7Bomb;
+                    break;
+                case 8:
+                    btn[x, y].BackgroundImage = Minesweeper.Properties.Resources._8Bomb;
+                    break;
+
+            }
         }
 
         // Open all the boxes surrounding the position x, y
@@ -208,12 +240,12 @@ namespace Minesweeper
             if (board[x, y]%8 < 4 && board[x, y]%4 < 2)     // If the box isn't opened or a flag
             {
                 board[x, y] += 4;                           // Flag this box
-                btn[x, y].BackColor = Color.Magenta;        // Change the colour of the box
+                btn[x, y].BackgroundImage = Minesweeper.Properties.Resources.Flag;        // Change the colour of the box
             }
             else if (board[x, y] >= 4)                      // If the box is flagged
             {
                 board[x, y] -= 4;                           // Remove the flag from the box
-                btn[x, y].BackColor = Color.BlueViolet;     // Change colour back to unopened
+                btn[x, y].BackgroundImage = Minesweeper.Properties.Resources.Blank;     // Change colour back to unopened
             }
 
         }
@@ -245,7 +277,7 @@ namespace Minesweeper
                 {
                     if (board[x, y] % 2 == 1)               // If this box contains a bomb
                     {
-                        btn[x, y].BackColor = Color.Red;    // Turn the bomb red
+                        btn[x, y].BackgroundImage = Minesweeper.Properties.Resources.Bomb;    // Turn the bomb red
                     }
 
                     btn[x, y].Enabled = false;              // Disable the button
@@ -273,7 +305,7 @@ namespace Minesweeper
             sizeY = 9;          
             bombCount = 10;     // Set the number of bombs to 10
 
-            Size = new System.Drawing.Size(18 + (35 * sizeX), 70 + (35 * sizeY));   // Resize the window
+            Size = new System.Drawing.Size(18 + (45 * sizeX), 70 + (45 * sizeY));   // Resize the window
 
             newGame();      // Call the function to start a new game
         }
@@ -285,7 +317,7 @@ namespace Minesweeper
             sizeY = 16;
             bombCount = 40;     // Set the number of bombs to 40
 
-            Size = new System.Drawing.Size(18 + (35 * sizeX), 70 + (35 * sizeY));   // Resize the window
+            Size = new System.Drawing.Size(18 + (45 * sizeX), 70 + (45 * sizeY));   // Resize the window
 
             newGame();      // Call the function to start a new game
         }
@@ -309,7 +341,7 @@ namespace Minesweeper
             sizeY = 16;
             bombCount = 99;     // Set the number of bombs to 99
 
-            Size = new System.Drawing.Size(18 + (35 * sizeX), 70 + (35 * sizeY));   // Resize the window
+            Size = new System.Drawing.Size(18 + (45 * sizeX), 70 + (45 * sizeY));   // Resize the window
 
             newGame();      // Call the function to start a new game
         }
