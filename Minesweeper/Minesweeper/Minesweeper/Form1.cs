@@ -331,7 +331,7 @@ namespace Minesweeper
         // Display the instructions for how to play the game
         private void instructionsToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("Minesweeper", "Instructions");
+            MessageBox.Show("Minesweeper", "Click on boxes to unveil the box. If it is a bomb, game over. If it is not a bomb then the box will display the number of bombs near it. Use the mouse wheel to flag a box. If a box is flagged then it cannot be clicked on.");
         }
 
         // Event handler for the medium difficulty button
