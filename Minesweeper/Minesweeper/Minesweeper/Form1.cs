@@ -20,8 +20,8 @@ namespace Minesweeper
     public partial class frmGame : Form
     {
         int sizeX = 9, sizeY = 9, bombCount = 10;   // Global variables storing the size of grid and number of bombs
-        Button[,] btn = new Button[30, 16];         // Button objects being created in the hardest difficulty
-        int[,] board = new int[30, 16];             // Board varable stores the state of each square on the board
+        Button[,] btn = new Button[26, 14];         // Button objects being created in the hardest difficulty
+        int[,] board = new int[26, 14];             // Board varable stores the state of each square on the board
         bool firstPress, gameEnded = false;         // firstPress stores whether the first press has been taken
                                                     // gameEnded stores if the game has ended yet or not
         // Constructor for the game form
@@ -33,9 +33,9 @@ namespace Minesweeper
             // This will change the size of the window based on the size of the grid.
             Size = new System.Drawing.Size(18 + (45 * sizeX), 70 + (45 * sizeY));
             
-            for (int x = 0; x < 30; x++)        // Loop to initialise all of the buttons        
+            for (int x = 0; x < 26; x++)        // Loop to initialise all of the buttons        
             {
-                for (int y = 0; y < 16; y++)   
+                for (int y = 0; y < 14; y++)   
                 {
                     btn[x, y] = new Button();
                 }
@@ -86,6 +86,8 @@ namespace Minesweeper
                     btn[x, y].Enabled = true;                                               // Activate the buttons
                     btn[x, y].SetBounds(45 * x, 30 + (45 * y), 45, 45);                     // Set the location and size
                     btn[x, y].BackgroundImage = Minesweeper.Properties.Resources.Blank;     // Set the colours
+                    btn[x, y].FlatStyle = FlatStyle.Flat;
+                    btn[x, y].ForeColor = Color.DarkGreen;
                     btn[x, y].Text = "";                                                    // Make all boxes empty
                     btn[x, y].MouseClick += new MouseEventHandler(this.btnEvent_Click);     // Set the event handlers for
                     btn[x, y].MouseWheel += new MouseEventHandler(this.btnEvent_Wheel);     // Click and Mouse Wheel
@@ -121,8 +123,8 @@ namespace Minesweeper
 
                 if (board[x, y] % 2 == 1)   // If the opened box contained a bomb
                 {
-                    //System.Media.SoundPlayer player = new System.Media.SoundPlayer("Bomb_4");
-                    //player.Play();      // Play a bomb sound effect
+                    System.Media.SoundPlayer player = new System.Media.SoundPlayer(Minesweeper.Properties.Resources.Explosion_9);
+                    player.Play();      // Play a bomb sound effect
 
                     endGame(1);             // End the game with a loss
                 }
@@ -313,9 +315,9 @@ namespace Minesweeper
         // Event handler for the medium difficulty button
         private void mediumToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            sizeX = 16;         // Set the size of the board to 16 x 16 
-            sizeY = 16;
-            bombCount = 40;     // Set the number of bombs to 40
+            sizeX = 14;         // Set the size of the board to 14 x 14 
+            sizeY = 14;
+            bombCount = 35;     // Set the number of bombs to 35
 
             Size = new System.Drawing.Size(18 + (45 * sizeX), 70 + (45 * sizeY));   // Resize the window
 
@@ -337,9 +339,9 @@ namespace Minesweeper
         // Event handler for the medium difficulty button
         private void hardToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            sizeX = 30;         // Set the size of the board to 30 x 16
-            sizeY = 16;
-            bombCount = 99;     // Set the number of bombs to 99
+            sizeX = 26;         // Set the size of the board to 26 x 14
+            sizeY = 14;
+            bombCount = 80;     // Set the number of bombs to 80
 
             Size = new System.Drawing.Size(18 + (45 * sizeX), 70 + (45 * sizeY));   // Resize the window
 
