@@ -121,6 +121,9 @@ namespace Minesweeper
 
                 if (board[x, y] % 2 == 1)   // If the opened box contained a bomb
                 {
+                    System.Media.SoundPlayer player = new System.Media.SoundPlayer("Bomb+4.wav");
+                    player.Play();      // Play a bomb sound effect
+
                     endGame(1);             // End the game with a loss
                 }
                 else
@@ -285,6 +288,18 @@ namespace Minesweeper
             Size = new System.Drawing.Size(18 + (35 * sizeX), 70 + (35 * sizeY));   // Resize the window
 
             newGame();      // Call the function to start a new game
+        }
+
+        // Display information about the game
+        private void aboutToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        // Display the instructions for how to play the game
+        private void instructionsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show("Minesweeper", "Instructions");
         }
 
         // Event handler for the medium difficulty button
