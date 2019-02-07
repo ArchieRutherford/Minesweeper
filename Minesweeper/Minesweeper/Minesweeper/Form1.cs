@@ -146,6 +146,7 @@ namespace Minesweeper
             checkWin();     // Call the function to check whether the game has been won
         }
 
+        // Set the correct background image for n number of surrounding bombs
         void setBackgroundNumber(int x, int y, int number)
         {
             switch (number)
@@ -300,6 +301,12 @@ namespace Minesweeper
             newGame();  // Call function to start a new game
         }
 
+        // Event handler for the exit button
+        private void exitToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Environment.Exit(0);    // Exit the game
+        }
+
         // Event handler for the easy difficulty button
         private void easyToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -323,19 +330,7 @@ namespace Minesweeper
 
             newGame();      // Call the function to start a new game
         }
-
-        // Display information about the game
-        private void aboutToolStripMenuItem1_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        // Display the instructions for how to play the game
-        private void instructionsToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            MessageBox.Show("Minesweeper", "Click on boxes to unveil the box. If it is a bomb, game over. If it is not a bomb then the box will display the number of bombs near it. Use the mouse wheel to flag a box. If a box is flagged then it cannot be clicked on.");
-        }
-
+        
         // Event handler for the medium difficulty button
         private void hardToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -348,10 +343,16 @@ namespace Minesweeper
             newGame();      // Call the function to start a new game
         }
 
-        // Event handler for the exit button
-        private void exitToolStripMenuItem_Click(object sender, EventArgs e)
+        // Display information about the game
+        private void aboutToolStripMenuItem1_Click(object sender, EventArgs e)
         {
-            Environment.Exit(0);    // Exit the game
+            MessageBox.Show("This is Minesweeper made for AC22005\n\nThis game was made by\nArchie Rutherford - 170010226\nBenjamin Morrison - 170013039\n\nWe hope you enjoy.", "Minesweeper");
+        }
+
+        // Display the instructions for how to play the game
+        private void instructionsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show("Click on boxes to unveil the box.\n\nIf it is a bomb, game over.\nIf it is not a bomb then the box will display the number of bombs near it.\n\nUse the mouse wheel to flag a box.\nIf a box is flagged then it cannot be clicked on.", "Instructions");
         }
 
         // Event handler for the loading of the form
